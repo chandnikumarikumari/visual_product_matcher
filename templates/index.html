@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visual Product Matcher</title>
+    <style>
+        body { font-family: Arial; background:#f3f3f3; padding:30px; }
+        .box { background:white; padding:25px; border-radius:10px; width:600px; margin:auto; }
+        h2 { text-align:center; }
+        input, button { padding:8px; margin:6px; }
+        .grid { display:flex; flex-wrap:wrap; justify-content:center; }
+        .item { margin:10px; text-align:center; }
+        img { border-radius:8px; box-shadow:0 0 5px gray; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>🔍 Visual Product Matcher</h2>
+    <form action="/search" method="post" enctype="multipart/form-data">
+        <p><b>Upload Image:</b></p>
+        <input type="file" name="file">
+
+        <p><b>OR Paste Image URL:</b></p>
+        <input type="text" name="image_url" placeholder="https://example.com/image.jpg" style="width:100%">
+
+        <br>
+        <button type="submit">Search Similar Products</button>
+    </form>
+</div>
+
+{% if results %}
+<h3 style="text-align:center;">Results</h3>
+<div class="grid">
+    {% for item in results %}
+    <div class="item">
+        <img src="{{ item.image }}" width="180">
+        <p>Similarity: {{ item.score }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+</body>
+</html>
