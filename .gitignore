@@ -1,9 +1,13 @@
 # Virtual Environment
 venv/
 
+
+
+
 # Python cache
 __pycache__/
 *.pyc
+.env
 
 # FAISS index / model files
 *.index
